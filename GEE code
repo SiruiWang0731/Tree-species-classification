@@ -1,1 +1,1080 @@
-https://code.earthengine.google.com/c97841138a61e267a522deb3d33cea0e
+//link: https://code.earthengine.google.com/c4701c9757b394f77c97ebeef1036d25
+
+//script:
+
+var geometry = 
+    /* color: #98ff00 */
+    /* shown: false */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[8.817549443596707, 49.64917695551315],
+          [8.817549443596707, 48.82788309844213],
+          [10.091963506096707, 48.82788309844213],
+          [10.091963506096707, 49.64917695551315]]], null, false),
+    union = ee.FeatureCollection("users/Fire-warning/DE_Forest");
+
+var landcover_dataset = ee.Image("COPERNICUS/Landcover/100m/Proba-V-C3/Global/2019")
+.select('discrete_classification');
+//Map.addLayer(landcover_dataset)
+
+var  union = landcover_dataset.reduceRegions({
+  collection:union,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+
+
+var Picea_abies = union.filterMetadata('SPECIES_NA','equals','Picea abies');
+var Fagus_sylvatica = union.filterMetadata('SPECIES_NA','equals','Fagus sylvatica');
+var Pinus_sylvestris = union.filterMetadata('SPECIES_NA','equals','Pinus sylvestris');
+var Quercus_robur = union.filterMetadata('SPECIES_NA','equals','Quercus robur');
+var Betula_pendula = union.filterMetadata('SPECIES_NA','equals','Betula pendula');
+
+var Quercus_petraea = union.filterMetadata('SPECIES_NA','equals','Quercus petraea');
+var Fraxinus_excelsior = union.filterMetadata('SPECIES_NA','equals','Fraxinus excelsior');
+var Acer_pseudoplatanus = union.filterMetadata('SPECIES_NA','equals','Acer pseudoplatanus');
+var Sorbus_aucuparia = union.filterMetadata('SPECIES_NA','equals','Sorbus aucuparia');
+var Carpinus_betulus = union.filterMetadata('SPECIES_NA','equals','Carpinus betulus');
+
+var Larix_decidua = union.filterMetadata('SPECIES_NA','equals','Larix decidua');
+var Abies_alba = union.filterMetadata('SPECIES_NA','equals','Abies alba');
+var Pseudotsuga_menziesii = union.filterMetadata('SPECIES_NA','equals','Pseudotsuga menziesii');
+var Frangula_alnus = union.filterMetadata('SPECIES_NA','equals','Frangula alnus');
+var Alnus_glutinosa = union.filterMetadata('SPECIES_NA','equals','Alnus glutinosa');
+
+var Prunus_avium = union.filterMetadata('SPECIES_NA','equals','Prunus avium');
+var Populus_tremula = union.filterMetadata('SPECIES_NA','equals','Populus tremula');
+var Larix_kaempferi = union.filterMetadata('SPECIES_NA','equals','Larix kaempferi');
+var Quercus_rubra = union.filterMetadata('SPECIES_NA','equals','Quercus rubra');
+var Acer_campestre = union.filterMetadata('SPECIES_NA','equals','Acer campestre');
+
+
+
+
+var DE_Forest0 =Picea_abies.merge(Fagus_sylvatica).merge(Pinus_sylvestris).merge(Quercus_robur).merge(Betula_pendula)
+.merge(Quercus_petraea).merge(Fraxinus_excelsior).merge(Acer_pseudoplatanus).merge(Sorbus_aucuparia).merge(Carpinus_betulus)
+.merge(Larix_decidua).merge(Abies_alba).merge(Pseudotsuga_menziesii).merge(Frangula_alnus).merge(Alnus_glutinosa)
+.merge(Prunus_avium).merge(Populus_tremula).merge(Larix_kaempferi).merge(Quercus_rubra).merge(Acer_campestre)
+
+var DE_Forest = DE_Forest0.sort('ID', true)
+var DE_Forest=DE_Forest.distinct(['X', 'Y'])
+var DE_Forest1 = DE_Forest0.sort('ID1', true)
+var DE_Forest1=DE_Forest1.distinct(['X', 'Y'])
+var DE_Forest2 = DE_Forest0.sort('ID2', true)
+var DE_Forest2=DE_Forest2.distinct(['X', 'Y'])
+var DE_Forest3 = DE_Forest0.sort('ID3', true)
+var DE_Forest3=DE_Forest3.distinct(['X', 'Y'])
+var DE_Forest4 = DE_Forest0.sort('ID', true)
+var DE_Forest4=DE_Forest4.distinct(['X', 'Y'])
+var DE_Forest5 = DE_Forest0.sort('ID', true)
+var DE_Forest5=DE_Forest5.distinct(['X', 'Y'])
+
+var Picea_abies = DE_Forest1.filterMetadata('SPECIES_NA','equals','Picea abies');
+var Fagus_sylvatica = DE_Forest2.filterMetadata('SPECIES_NA','equals','Fagus sylvatica');
+var Pinus_sylvestris = DE_Forest3.filterMetadata('SPECIES_NA','equals','Pinus sylvestris');
+var Quercus_robur = DE_Forest4.filterMetadata('SPECIES_NA','equals','Quercus robur');
+var Betula_pendula = DE_Forest5.filterMetadata('SPECIES_NA','equals','Betula pendula');
+
+var Quercus_petraea = DE_Forest.filterMetadata('SPECIES_NA','equals','Quercus petraea');
+var Fraxinus_excelsior = DE_Forest.filterMetadata('SPECIES_NA','equals','Fraxinus excelsior');
+var Acer_pseudoplatanus = DE_Forest.filterMetadata('SPECIES_NA','equals','Acer pseudoplatanus');
+var Sorbus_aucuparia = DE_Forest.filterMetadata('SPECIES_NA','equals','Sorbus aucuparia');
+var Carpinus_betulus = DE_Forest.filterMetadata('SPECIES_NA','equals','Carpinus betulus');
+
+var Larix_decidua = DE_Forest.filterMetadata('SPECIES_NA','equals','Larix decidua');
+var Abies_alba = DE_Forest.filterMetadata('SPECIES_NA','equals','Abies alba');
+var Pseudotsuga_menziesii = DE_Forest.filterMetadata('SPECIES_NA','equals','Pseudotsuga menziesii');
+var Frangula_alnus = DE_Forest.filterMetadata('SPECIES_NA','equals','Frangula alnus');
+var Alnus_glutinosa = DE_Forest.filterMetadata('SPECIES_NA','equals','Alnus glutinosa');
+
+var Prunus_avium = DE_Forest.filterMetadata('SPECIES_NA','equals','Prunus avium');
+var Populus_tremula = DE_Forest.filterMetadata('SPECIES_NA','equals','Populus tremula');
+var Larix_kaempferi = DE_Forest.filterMetadata('SPECIES_NA','equals','Larix kaempferi');
+var Quercus_rubra = DE_Forest.filterMetadata('SPECIES_NA','equals','Quercus rubra');
+var Acer_campestre = DE_Forest.filterMetadata('SPECIES_NA','equals','Acer campestre');
+
+var Picea_abies = Picea_abies.filterMetadata('first','equals',111);
+var Fagus_sylvatica = Fagus_sylvatica.filterMetadata('first','equals',114);
+var Pinus_sylvestris=Pinus_sylvestris.filterMetadata('first','equals',111);
+var Quercus_robur = Quercus_robur.filterMetadata('first','equals',114);
+var Betula_pendula = Betula_pendula.filterMetadata('first','equals',114);
+
+var Quercus_petraea = Quercus_petraea.filterMetadata('first','equals',114);
+var Fraxinus_excelsior = Fraxinus_excelsior.filterMetadata('first','equals',114);
+var Acer_pseudoplatanus = Acer_pseudoplatanus.filterMetadata('first','equals',114);
+var Sorbus_aucuparia = Sorbus_aucuparia.filterMetadata('first','equals',114);
+var Carpinus_betulus = Carpinus_betulus.filterMetadata('first','equals',114);
+
+var Larix_decidua = Larix_decidua.filterMetadata('first','equals',111);
+var Abies_alba = Abies_alba.filterMetadata('first','equals',111);
+var Pseudotsuga_menziesii=Pseudotsuga_menziesii.filterMetadata('first','equals',111);
+var Frangula_alnus = Frangula_alnus.filterMetadata('first','equals',114);
+var Alnus_glutinosa = Alnus_glutinosa.filterMetadata('first','equals',114);
+
+var Prunus_avium = Prunus_avium.filterMetadata('first','equals',114);
+var Populus_tremula = Populus_tremula.filterMetadata('first','equals',114);
+var Larix_kaempferi=Larix_kaempferi.filterMetadata('first','equals',111);
+var Quercus_rubra = Quercus_rubra.filterMetadata('first','equals',114);
+var Acer_campestre = Acer_campestre.filterMetadata('first','equals',114);
+
+/***Select the roi of Germany***/
+
+var boundary = ee.FeatureCollection("FAO/GAUL_SIMPLIFIED_500m/2015/level0").filter(ee.Filter.eq('ADM0_NAME','Germany'));
+var roi_germany = boundary.select("ADM0_NAME");
+Map.addLayer(roi_germany, null, 'roi of Germany')
+
+
+/***Remove clouds***/
+function maskS2clouds(image) {
+  var qa = image.select('QA60');
+ 
+  // Bits 10 and 11 are clouds and cirrus, respectively.
+  var cloudBitMask = 1 << 10;
+  var cirrusBitMask = 1 << 11;
+ 
+  // Both flags should be set to zero, indicating clear conditions.
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0)
+      .and(qa.bitwiseAnd(cirrusBitMask).eq(0));
+ 
+  return image.updateMask(mask).divide(10000);
+}
+
+
+/***Download Sentinel-2 data***/
+var s2_spring = ee.ImageCollection('COPERNICUS/S2_SR')
+      .filterBounds(roi_germany)
+      .filterDate('2021-03-01', '2021-05-31')
+      .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 15))
+      .map(function(image){
+            return image.clip(roi_germany)
+        })
+      .map(maskS2clouds)
+      .median();
+      
+var s2_summer = ee.ImageCollection('COPERNICUS/S2_SR')
+      .filterBounds(roi_germany)
+      .filterDate('2021-06-01', '2021-08-31')
+      .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 15))
+      .map(function(image){
+            return image.clip(roi_germany)
+        })
+      .map(maskS2clouds)
+      .median();
+      
+var s2_autumn = ee.ImageCollection('COPERNICUS/S2_SR')
+      .filterBounds(roi_germany)
+      .filterDate('2021-09-01', '2021-11-30')
+      .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 15))
+      .map(function(image){
+            return image.clip(roi_germany)
+        })
+      .map(maskS2clouds)
+      .median();
+var s2_winter = ee.ImageCollection('COPERNICUS/S2_SR')
+      .filterBounds(roi_germany)
+      .filterDate('2021-12-01', '2022-02-28')
+      .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 15))
+      .map(function(image){
+            return image.clip(roi_germany)
+        })
+      .map(maskS2clouds)
+      .median();
+      
+var s2_mid = s2_spring.addBands(s2_summer);
+var s2 = s2_mid.addBands(s2_autumn).addBands(s2_winter);
+print('stacked_composite bands', s2.bandNames());
+
+
+/***Sentinel-2 visualization***/
+var rgbVis = {
+  min: 0.0,
+  max: 0.3,
+  bands: ['B4', 'B3', 'B2'],
+};
+ 
+Map.addLayer(s2, rgbVis, 's2_collection');
+Map.centerObject(roi_germany, 5)
+var Bands = ['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12', 
+'B2_1', 'B3_1', 'B4_1', 'B5_1', 'B6_1', 'B7_1', 'B8_1', 'B8A_1', 'B11_1', 'B12_1', 
+'B2_2', 'B3_2', 'B4_2', 'B5_2', 'B6_2', 'B7_2', 'B8_2', 'B8A_2', 'B11_2', 'B12_2',
+'B2_3', 'B3_3', 'B4_3', 'B5_3', 'B6_3', 'B7_3', 'B8_3', 'B8A_3', 'B11_3', 'B12_3']
+var s2_out=s2.select(['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12', 
+'B2_1', 'B3_1', 'B4_1', 'B5_1', 'B6_1', 'B7_1', 'B8_1', 'B8A_1', 'B11_1', 'B12_1',
+'B2_2', 'B3_2', 'B4_2', 'B5_2', 'B6_2', 'B7_2', 'B8_2', 'B8A_2', 'B11_2', 'B12_2',
+'B2_3', 'B3_3', 'B4_3', 'B5_3', 'B6_3', 'B7_3', 'B8_3', 'B8A_3', 'B11_3', 'B12_3'])
+
+
+
+var kernel = ee.Kernel.rectangle(4,4)
+
+var neighborhoodImage = s2_out.neighborhoodToArray(kernel)
+
+
+var no="needle_broad_0129";
+
+
+var species1="Picea_abies";
+var samples1 = neighborhoodImage.reduceRegions({
+  collection:Picea_abies,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples1)
+
+Export.table.toDrive({
+    collection : samples1,
+    description : "samples_" + species1 + '_' + no,
+    fileNamePrefix : species1 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+var species2="Fagus_sylvatica";
+
+var samples2 = neighborhoodImage.reduceRegions({
+  collection:Fagus_sylvatica,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples2)
+
+Export.table.toDrive({
+    collection : samples2,
+    description : "samples_" + species2 + '_' + no,
+    fileNamePrefix : species2 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+var species3="Pinus_sylvestris";
+
+var samples3 = neighborhoodImage.reduceRegions({
+  collection:Pinus_sylvestris,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples3)
+
+Export.table.toDrive({
+    collection : samples3,
+    description : "samples_" + species3 + '_' + no,
+    fileNamePrefix : species3 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+
+var species4="Quercus_robur";
+
+var samples4 = neighborhoodImage.reduceRegions({
+  collection:Quercus_robur,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples4)
+
+Export.table.toDrive({
+    collection : samples4,
+    description : "samples_" + species4 + '_' + no,
+    fileNamePrefix : species4 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+
+var species5="Betula_pendula";
+
+var samples5 = neighborhoodImage.reduceRegions({
+  collection:Betula_pendula,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples5)
+
+Export.table.toDrive({
+    collection : samples5,
+    description : "samples_" + species5 + '_' + no,
+    fileNamePrefix : species5 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+var species6="Quercus_petraea";
+
+var samples6 = neighborhoodImage.reduceRegions({
+  collection:Quercus_petraea,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples6)
+
+Export.table.toDrive({
+    collection : samples6,
+    description : "samples_" + species6 + '_' + no,
+    fileNamePrefix : species6 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+
+var species7="Fraxinus_excelsior";
+
+var samples7 = neighborhoodImage.reduceRegions({
+  collection:Fraxinus_excelsior,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples7)
+
+Export.table.toDrive({
+    collection : samples7,
+    description : "samples_" + species7 + '_' + no,
+    fileNamePrefix : species7 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+  
+var species8="Acer_pseudoplatanus";
+
+var samples8 = neighborhoodImage.reduceRegions({
+  collection:Acer_pseudoplatanus,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples8)
+
+Export.table.toDrive({
+    collection : samples8,
+    description : "samples_" + species8 + '_' + no,
+    fileNamePrefix : species8 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+
+var species9="Sorbus_aucuparia";
+
+var samples9 = neighborhoodImage.reduceRegions({
+  collection:Sorbus_aucuparia,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples9)
+
+Export.table.toDrive({
+    collection : samples9,
+    description : "samples_" + species9 + '_' + no,
+    fileNamePrefix : species9 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+  
+var species10="Carpinus_betulus";
+
+var samples10 = neighborhoodImage.reduceRegions({
+  collection:Carpinus_betulus,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples10)
+
+Export.table.toDrive({
+    collection : samples10,
+    description : "samples_" + species10 + '_' + no,
+    fileNamePrefix : species10 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+
+
+var species11="Larix_decidua";
+
+var samples11 = neighborhoodImage.reduceRegions({
+  collection:Larix_decidua,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples11)
+
+Export.table.toDrive({
+    collection : samples11,
+    description : "samples_" + species11 + '_' + no,
+    fileNamePrefix : species11 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+var species12="Abies_alba";
+
+var samples12 = neighborhoodImage.reduceRegions({
+  collection:Abies_alba,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples12)
+
+Export.table.toDrive({
+    collection : samples12,
+    description : "samples_" + species12 + '_' + no,
+    fileNamePrefix : species12 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+
+var species13="Pseudotsuga_menziesii";
+
+var samples13 = neighborhoodImage.reduceRegions({
+  collection:Pseudotsuga_menziesii,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples13)
+
+Export.table.toDrive({
+    collection : samples13,
+    description : "samples_" + species13 + '_' + no,
+    fileNamePrefix : species13 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+var species14="Frangula_alnus";
+
+var samples14 = neighborhoodImage.reduceRegions({
+  collection:Frangula_alnus,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples14)
+
+Export.table.toDrive({
+    collection : samples14,
+    description : "samples_" + species14 + '_' + no,
+    fileNamePrefix : species14 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+var species15="Alnus_glutinosa";
+
+var samples15 = neighborhoodImage.reduceRegions({
+  collection:Alnus_glutinosa,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples15)
+
+Export.table.toDrive({
+    collection : samples15,
+    description : "samples_" + species15 + '_' + no,
+    fileNamePrefix : species15 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+var species16="Prunus_avium";
+
+var samples16 = neighborhoodImage.reduceRegions({
+  collection:Prunus_avium,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples16)
+
+Export.table.toDrive({
+    collection : samples16,
+    description : "samples_" + species16 + '_' + no,
+    fileNamePrefix : species16 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+  var species17="Populus_tremula";
+
+var samples17 = neighborhoodImage.reduceRegions({
+  collection:Populus_tremula,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples17)
+
+Export.table.toDrive({
+    collection : samples17,
+    description : "samples_" + species17 + '_' + no,
+    fileNamePrefix : species17 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+  var species18="Larix_kaempferi";
+
+var samples18 = neighborhoodImage.reduceRegions({
+  collection:Larix_kaempferi,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples18)
+
+Export.table.toDrive({
+    collection : samples18,
+    description : "samples_" + species18 + '_' + no,
+    fileNamePrefix : species18 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+  var species19="Quercus_rubra";
+
+var samples19 = neighborhoodImage.reduceRegions({
+  collection:Quercus_rubra,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples19)
+
+Export.table.toDrive({
+    collection : samples19,
+    description : "samples_" + species19 + '_' + no,
+    fileNamePrefix : species19 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+  
+  var species20="Acer_campestre";
+
+var samples20 = neighborhoodImage.reduceRegions({
+  collection:Acer_campestre,
+  reducer: ee.Reducer.first(),
+  scale: 10,
+  crs: 'EPSG:3035'
+});
+print(samples20)
+
+Export.table.toDrive({
+    collection : samples20,
+    description : "samples_" + species20 + '_' + no,
+    fileNamePrefix : species20 + '_' + no,
+    fileFormat : 'GeoJSON',
+    selectors : Bands
+  });
+
+
+
+
+
+var chart11 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Picea_abies.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Picea abies in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart11)
+
+var chart12 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Picea_abies.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Picea abies in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart12)
+
+var chart13 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Picea_abies.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Picea abies in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart13)
+
+var chart14 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Picea_abies.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Picea abies in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart14)
+
+
+
+
+
+var chart21 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fagus_sylvatica.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fagus sylvatica in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart21)
+
+var chart22 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fagus_sylvatica.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fagus sylvatica in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart22)
+
+var chart23 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fagus_sylvatica.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fagus sylvatica in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart23)
+
+var chart24 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fagus_sylvatica.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fagus sylvatica in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart24)
+
+
+var chart31 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Pinus_sylvestris.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Pinus sylvestris in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart31)
+
+var chart32 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Pinus_sylvestris.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Pinus sylvestris in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart32)
+
+var chart33 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Pinus_sylvestris.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Pinus sylvestris in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart33)
+
+var chart34 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Pinus_sylvestris.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Pinus sylvestris in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart34)
+
+
+
+
+var chart41 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_robur.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus robur in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart41)
+
+var chart42 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_robur.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus robur in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart42)
+
+var chart43 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_robur.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus robur in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart43)
+
+var chart44 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_robur.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus robur in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart44)
+
+
+
+var chart51 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Betula_pendula.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Betula pendula in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart51)
+
+var chart52 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Betula_pendula.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Betula pendula in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart52)
+
+var chart53 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Betula_pendula.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Betula pendula in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart53)
+
+var chart54 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Betula_pendula.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Betula pendula in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart54)
+
+
+var chart61 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_petraea.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus petraea in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart61)
+
+var chart62 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_petraea.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus petraea in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart62)
+
+var chart63 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_petraea.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus petraea in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart63)
+
+var chart64 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Quercus_petraea.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Quercus petraea in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart64)
+
+var chart71 = ui.Chart.image.regions
+({
+    image: s2_spring.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fraxinus_excelsior.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fraxinus excelsior in spring',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart71)
+
+var chart72 = ui.Chart.image.regions
+({
+    image: s2_summer.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fraxinus_excelsior.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fraxinus excelsior in summer',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart72)
+
+var chart73 = ui.Chart.image.regions
+({
+    image: s2_autumn.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fraxinus_excelsior.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fraxinus excelsior in autumn',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart73)
+
+var chart74 = ui.Chart.image.regions
+({
+    image: s2_winter.select('B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12'),
+    regions: Fraxinus_excelsior.filterBounds(geometry),
+    reducer: ee.Reducer.mean(),
+    scale: 10,
+
+
+  })
+  .setOptions({
+          title: 'Mean Surface Reflectance Value of Fraxinus excelsior in winter',
+          hAxis: {title: 'Bands', titleTextStyle: {italic: false, bold: true}},
+          vAxis: {title: 'Surface Reflectance',titleTextStyle: {italic: false, bold: true}},
+  });
+
+print(chart74)
+
+
+Map.addLayer(Picea_abies, {color: '#ff490b'},'Picea_abies');
+Map.addLayer(Fagus_sylvatica, {color: '#f3ff3c'},'Fagus_sylvatica');
+Map.addLayer(Pinus_sylvestris, {color: '#ff7d0d'},'Pinus_sylvestris');
+Map.addLayer(Quercus_robur, {color: '#33fff6'},'Quercus_robur');
+Map.addLayer(Betula_pendula, {color: '#ea79ff'},'Betula_pendula');
+Map.addLayer(Quercus_petraea, {color: '#0e10ff'},'Quercus_petraea');
+Map.addLayer(Fraxinus_excelsior, {color: '#3dff5a'},'Fraxinus_excelsior');
