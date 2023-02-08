@@ -2,13 +2,13 @@
 
 Project package description:
 
-1.Python scripts:
+1. Python scripts:
 ‘tree_classification_datapre.ipynb’
 ‘tree_classification_NN.ipynb’
 ‘check.py’
 ‘data_augmentation_script.ipynb’.
 
-2. GEE script:
+2. GEE code:
 URL link with script.
 
 3. Reference data:
