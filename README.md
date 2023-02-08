@@ -20,4 +20,4 @@ Project package description:
 ![This is an image](https://github.com/SiruiWang0731/Tree-species-classification/blob/58e921832328a3938e346923320466bd411eac2c/Screenshot%202023-02-08%20at%2023.16.17.png)
 
 
-
+![This is an image](https://github.com/SiruiWang0731/Tree-species-classification/blob/5f27eaaba9bf5d29d07ead18b8e9375f54587a28/Screenshot%202023-02-08%20at%2023.18.48.png)
