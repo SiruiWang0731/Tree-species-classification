@@ -3,10 +3,15 @@
 Project package description:
 
 1. Python scripts:
+
+Deep learning: ‘tree_classification_NN_indices.ipynb’
+
 ‘tree_classification_datapre.ipynb’
-‘tree_classification_NN.ipynb’
+
 ‘check.py’
+
 ‘data_augmentation_script.ipynb’
+
 ‘slicing_bands.ipynb’
 
 2. GEE code:
