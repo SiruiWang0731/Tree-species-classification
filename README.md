@@ -20,6 +20,9 @@ URL link with script.
 ‘Train_merge.npy’
 ‘Val_merge.npy’
 ‘Test_merge.npy’.
+4. The data are available at:
+https://drive.google.com/drive/folders/1kEuNuCG2-6UgkFQ9CP8JHVdu9bZrg-aD?usp=share_link
+
 
 ## Recurrent Residual Convolutional Neural Network (RRCNN)
 
