@@ -2,7 +2,11 @@
 
 Project package description:
 
-1. Python scripts:
+1. Report file:
+
+https://github.com/SiruiWang0731/Tree-species-classification/blob/60480731d8b7e12b5cc70ac9923220820e3bf8c2/Draft_report2_DSinEO.pdf
+
+2. Python scripts:
 
   Deep learning: ‘tree_classification_NN_indices.ipynb’
 
@@ -14,18 +18,18 @@ Project package description:
 
   ‘slicing_bands.ipynb’
 
-2. GEE code:
+3. GEE code:
 URL link with script.
 
-3. Reference data:
+4. Reference data:
 ‘File1.csv’
 ‘File2.csv’.
 
-3. Training, validation and testing data:
+5. Training, validation and testing data:
 ‘Train_merge.npy’
 ‘Val_merge.npy’
 ‘Test_merge.npy’.
-4. The data are available at:
+6. The data are available at:
 https://drive.google.com/drive/folders/1kEuNuCG2-6UgkFQ9CP8JHVdu9bZrg-aD?usp=share_link
 
 
